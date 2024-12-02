@@ -1,6 +1,5 @@
 from functools import reduce
 
-# Пример данных пользователей и услуг
 users = [
     {'username': 'alex_user', 'password': 'password123', 'role': 'user', 'subscription_type': 'Premium', 'history': [], 'created_at': '2024-01-15'},
     {'username': 'admin_user', 'password': 'adminpass', 'role': 'admin', 'history': [], 'created_at': '2024-01-10'}
@@ -17,7 +16,6 @@ def login():
     username = input("Логин: ")
     password = input("Пароль: ")
 
-    # Проверка пользователей
     user = next((u for u in users if u['username'] == username and u['password'] == password), None)
     if user:
         print(f"Добро пожаловать, {user['username']}!")
