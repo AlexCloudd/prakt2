@@ -37,8 +37,11 @@ def sort_services_by_popularity(services_list):
     display_services(sorted_services)
 
 def filter_services_by_price(services_list, min_price):
-    filtered_services = filter(lambda x: x['price'] >= min_price, services_list)
-    display_services(list(filtered_services))
+    filtered_services = list(filter(lambda service: service['price'] >= min_price, services_list))
+    if filtered_services:
+        display_services(filtered_services)
+    else:
+        print("Нет услуг, соответствующих указанной цене.")
 
 def map_services_price_in_euros(services_list, exchange_rate=0.011):
     mapped_services = map(lambda x: {**x, 'price': round(x['price'] * exchange_rate, 2)}, services_list)
@@ -77,7 +80,7 @@ def user_menu(user):
         elif choice == '5':
             sort_services_by_popularity(services)
         elif choice == '6':
-            min_price = int(input("Введите минимальную цену: "))
+            min_price = int(input("Введите цену (минимальная цена 800): "))
             filter_services_by_price(services, min_price)
         elif choice == '7':
             map_services_price_in_euros(services)
